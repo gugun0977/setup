@@ -1,0 +1,76 @@
+
+echo
+  echo "Selamat datang di WGCF HIJINETWORK"
+  echo "   -------------------------SILAHKAN PILIH------------------------"
+  echo
+  echo "   1) Create NEW WGCF ACCOUNT"
+  echo "   2) Create WGCF WITH KEY"
+  read -p "   Pilih Satu Opsi: " option
+	until [[ "$option" =~ ^[1-2]$ ]]; do
+		echo "$option: invalid selection."
+		read -p "   Pilih Satu Opsi: " option
+	done
+	case "$option" in
+		1)
+			echo
+            unset NAMA
+            while [[ -z "$NAMA" ]];
+            do
+                read -p "Masukkan NAMA AKUN : " NAMA
+            done
+            echo "Membuat WGCF BARU..."
+            rm -rf /root/wgcf-profile.conf
+            rm -rf /root/wgcf-account.toml
+			wgcf register --accept-tos &> /dev/null
+            wgcf update &> /dev/null
+            wgcf generate
+            echo "Akun sudah dibuat..."
+            echo
+            echo
+            echo "###-------------------------WARP CLOUDFLARE ACCOUNT------------------------###"
+            echo
+            cat /root/wgcf-profile.conf
+            echo
+            echo "###-------------------------WARP CLOUDFLARE ACCOUNT------------------------###"
+            echo
+            echo
+            mv /root/wgcf-profile.conf /root/akun/wgcf/wgcf-$NAMA.conf
+            mv /root/wgcf-account.toml /root/akun/wgcf/wgcf-$NAMA.toml
+            echo "File ada di /root/akun/wgcf/wgcf-$NAMA.conf"
+			exit
+		;;
+		2)
+			echo
+            unset NAMA
+            while [[ -z "$NAMA" ]];
+            do
+                read -p "Masukkan AKUN : " NAMA
+            done
+            unset LICENSEKEY
+            while [[ -z "$LICENSEKEY" ]];
+            do
+                read -p "Masukkan LISENSI WARP+ : " LICENSEKEY
+                echo
+            done
+            echo "Memproses WGCF dengan LISENSI..."
+            rm -rf /root/wgcf-profile.conf
+            rm -rf /root/wgcf-account.toml
+			wgcf register --accept-tos &> /dev/null
+            WGCF_LICENSE_KEY="$LICENSEKEY" wgcf update
+            wgcf generate
+            echo "Akun sudah dibuat..."
+            echo
+            echo
+            echo "###-------------------------WARP CLOUDFLARE ACCOUNT------------------------###"
+            echo
+            cat /root/wgcf-profile.conf
+            echo
+            echo "###-------------------------WARP CLOUDFLARE ACCOUNT------------------------###"
+            echo
+            echo
+            mv /root/wgcf-profile.conf /root/akun/wgcf/wgcf-$NAMA.conf
+            mv /root/wgcf-account.toml /root/akun/wgcf/wgcf-$NAMA.toml
+            echo "File ada di /root/akun/wgcf/wgcf-$NAMA.conf"
+		;;
+        esac
+

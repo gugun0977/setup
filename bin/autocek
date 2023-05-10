@@ -1,0 +1,31 @@
+#!/bin/bash
+#CEK USER
+
+datenow=$(date +"%d-%m-%Y")
+
+userl2tp=$(grep '^# BEGIN_PEER' /etc/ppp/chap-secrets | cut -d ' ' -f 3)
+expl2tp=$(grep '^# BEGIN_PEER ' /etc/ppp/chap-secrets | cut -d ' ' -f 5)
+
+userwg=$(grep '^# BEGIN_PEER' /etc/wireguard/wg0.conf | cut -d ' ' -f 3)
+expwg=$(grep '^# BEGIN_PEER' /etc/wireguard/wg0.conf | cut -d ' ' -f 5)
+
+
+for user in $userwg
+do
+	exp1=$(grep "^# BEGIN_PEER $user " /etc/wireguard/wg0.conf | cut -d ' ' -f 5)
+	#echo $user " == " $exp1 
+	if [[ "$datenow" == "$exp1" ]]; then
+		/usr/local/etc/wgtp/wg/deluser $user
+		echo $user "dihapus"
+	fi
+done
+
+for user in $userl2tp
+do
+	exp2=$(grep "^# BEGIN_PEER $user " /etc/ppp/chap-secrets | cut -d ' ' -f 5)
+	#echo $datenow $exp $user
+	if [[ "$datenow" == "$exp2" ]]; then
+		/usr/local/etc/wgtp/ipsec/deluser.sh $user
+		echo $user "dihapus"
+	fi
+done
