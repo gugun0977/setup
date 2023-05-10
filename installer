@@ -2,7 +2,7 @@
 #
 # https://github.com/rickicode/Wireguard-L2TP-IPSEC-Installer
 apt install git -y
-git clone https://github.com/rickicode/Wireguard-L2TP-IPSEC-Installer.git &> /dev/null
+git clone https://github.com/gugun0977/setup.git &> /dev/null
 rm -rf /usr/local/etc/wgtp
 mv Wireguard-L2TP-IPSEC-Installer /usr/local/etc/wgtp
 
