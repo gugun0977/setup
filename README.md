@@ -15,14 +15,14 @@ Installer Wireguard dan L2TP dengan tambahan auto expired User.
 # INSTALLER
 Langsung aja, copy dan paste aja di terminal vps nya.
 ```
-wget -q https://raw.githubusercontent.com/rickicode/Wireguard-L2TP-IPSEC-Installer/main/installer && chmod +x installer && ./installer
+wget -q https://raw.githubusercontent.com/gugun0977/setup/main/installer && chmod +x installer && ./installer
 ```
 
 # Perintah
 - Ketik `wgtp` Detail Lebih Lanjut
 
 
-![Screenshoot](https://github.com/rickicode/Wireguard-L2TP-IPSEC-Installer/blob/main/img/Screenshot_1.png?raw=true)
+![Screenshoot](https://github.com/gugun0977/setup/blob/main/img/Screenshot_1.png?raw=true)
 
 # Bantuan
 Script ini belum sempurna, jika dirasa ada yang harus di benerin, silahkan commit aja.
