@@ -5,6 +5,7 @@ apt install git -y
 git clone https://github.com/gugun0977/setup.git &> /dev/null
 rm -rf /usr/local/etc/wgtp
 mv setup /usr/local/etc/wgtp
+chmod +x /usr/local/etc/wgtp/ipsec/install.sh
 
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 if [[ ! -e /etc/xl2tpd/xl2tpd.conf ]]; then
